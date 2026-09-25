@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OQC DO Capture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17212B">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="OQC">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+  html, body { margin: 0; height: 100%; background: #17212B; }
+  iframe { border: 0; width: 100%; height: 100%; display: block; }
+  .msg { color: #fff; font: 16px/1.6 Arial, sans-serif; padding: 24px; }
+  .msg a { color: #F5B800; }
+</style>
+</head>
+<body>
+<!--
+  Put your live web app link between the quotes below (the one ending in /exec).
+  For the supervisor Verify Hub, use the same link with ?page=verify at the end
+  and save this folder a second time under a different name.
+-->
+<script>
+  var APP_URL = "https://script.google.com/macros/s/AKfycbybEHDKlv5IWTXqI79ZB7VwrtxxYIUMoZeXD8KdevmfmAe30YVvsGIYnUlxjnOYi3heww/exec";
+  if (APP_URL.indexOf("script.google.com") < 0) {
+    document.write('<div class="msg">This shortcut is not set up yet.<br><br>' +
+      'Open <b>index.html</b> in a text editor and put your web app link ' +
+      '(the one ending in <b>/exec</b>) inside the quotes of <b>APP_URL</b>.</div>');
+  } else {
+    var f = document.createElement('iframe');
+    f.src = APP_URL;
+    f.allow = "camera; clipboard-write";
+    document.body.appendChild(f);
+  }
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  }
+</script>
+</body>
+</html>
